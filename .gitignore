@@ -1,4 +1,5 @@
 .*
 *.a
 *.o
-o.out
+a.out
+test_gnl
