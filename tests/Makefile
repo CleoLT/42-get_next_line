@@ -8,7 +8,7 @@ SRCS = ../get_next_line.c test_gnl.c
 
 OBJS = $(SRCS:.c=.o)
 
-INCLUDE = Makefile ../get_next_line.c
+INCLUDE = Makefile ../get_next_line.h
 
 RM = rm -f
 
@@ -20,10 +20,12 @@ $(NAME): $(OBJS)
 %.o: %.c $(INCLUDE)
 		$(CC) $(CFLAGS) -c $< -o $@
 
-clean:
+clean:  
 		$(RM) $(OBJS)
 
-fclean: 
+fclean: clean
 		$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: clean fclean re

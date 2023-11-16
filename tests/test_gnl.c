@@ -10,12 +10,19 @@ void	print_line(char *filename)
 	fd = open(filename, O_RDONLY);
 	line = get_next_line(fd);
 	printf("%s", line);
-//	free(line);
+	free(line);
 	close(fd);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	print_line("song.txt");
+	int	i;
+
+	i = 0;
+	if (argc == 2)
+	{
+		while (i++ < 10) 
+			print_line(argv[1]);
+	}
 	return (0);
 }
