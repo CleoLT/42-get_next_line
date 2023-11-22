@@ -2,27 +2,29 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-void	print_line(char *filename)
+void	print_lines(char *filename)
 {
 	int		fd;
 	char	*line;
 
 	fd = open(filename, O_RDONLY);
-	line = get_next_line(fd);
-	printf("%s", line);
-	free(line);
+	if (fd == -1)
+		return ;
+	line = " ";
+	while (line)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		printf("%s %% ", line);
+		free(line);
+	}
 	close(fd);
 }
 
 int	main(int argc, char **argv)
 {
-	int	i;
-
-	i = 0;
 	if (argc == 2)
-	{
-		while (i++ < 10) 
-			print_line(argv[1]);
-	}
+		print_lines(argv[1]);
 	return (0);
 }

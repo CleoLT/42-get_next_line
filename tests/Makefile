@@ -2,9 +2,9 @@ NAME = test_gnl
 
 CC = gcc
 
-CFLAGS = -Werror -Wextra -Wall -D BUFFER_SIZE=$(SIZE)
+CFLAGS = -Werror -Wextra -Wall -g -D BUFFER_SIZE=$(SIZE)
 
-SRCS = ../get_next_line.c test_gnl.c 
+SRCS = ../get_next_line.c ../get_next_line_utils.c test_gnl.c 
 
 OBJS = $(SRCS:.c=.o)
 
