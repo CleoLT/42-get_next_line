@@ -6,14 +6,14 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 08:40:06 by ale-tron          #+#    #+#             */
-/*   Updated: 2023/11/16 09:43:11 by ale-tron         ###   ########.fr       */
+/*   Updated: 2023/11/24 08:41:22 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 
 char	*read_line(int fd, char *buf, char *stash)
 {
-//	char	*line;
+//	char	*line  ;
 	int	read_bytes;
 	char	*temp;
 	
