@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 08:40:06 by ale-tron          #+#    #+#             */
-/*   Updated: 2023/11/24 08:41:22 by ale-tron         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:10:14 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -40,6 +40,17 @@ char	*read_line(int fd, char *buf, char *stash)
 	return (stash);
 }
 
+char	*extract(char *stash)
+{
+	char	*line;
+	size_t	len;
+
+	len = 0;	
+	while (*stash != '\n' && *stash)
+		len++;
+	line = ft_substr(stash, 0, len);
+	return (line);
+}
 
 char	*get_next_line(int fd)
 {
@@ -47,13 +58,13 @@ char	*get_next_line(int fd)
 	static char	*stash;
 	char		*line;
 
-	if ((fd < 0) | (BUFFER_SIZE == 0))
+	if ((fd < 0) || (BUFFER_SIZE == 0))
 		return (NULL);
 	buf = malloc(sizeof(char*) * BUFFER_SIZE + 1);
 	if (!buf)
 		return (NULL);
-//	stash = ft_strdup("");
 	line = read_line(fd, buf, stash);
 	free(buf);
+	line = extract(stash);
 	return (line);
 }
