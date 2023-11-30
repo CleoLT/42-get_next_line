@@ -16,7 +16,7 @@ void	print_lines(char *filename)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		printf("%s %% ", line);
+		printf("%s", line);
 		free(line);
 	}
 	close(fd);

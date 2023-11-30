@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 08:40:06 by ale-tron          #+#    #+#             */
-/*   Updated: 2023/11/24 12:10:14 by ale-tron         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:51:29 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -40,16 +40,18 @@ char	*read_line(int fd, char *buf, char *stash)
 	return (stash);
 }
 
-char	*extract(char *stash)
+char	*extract(char *line)
 {
-	char	*line;
-	size_t	len;
+	char	*result;
+	size_t	i;
 
-	len = 0;	
-	while (*stash != '\n' && *stash)
-		len++;
-	line = ft_substr(stash, 0, len);
-	return (line);
+	i = 0;	
+	while (line[i] != '\n' && line[i] != '\0')
+		i++;
+	result = ft_substr(line, i + 1, ft_strlen(line));
+//	line = ft_substr(line, 0, i + 1);
+	line[i + 1] = '\0';
+	return (result);
 }
 
 char	*get_next_line(int fd)
@@ -57,6 +59,7 @@ char	*get_next_line(int fd)
 	char		*buf;
 	static char	*stash;
 	char		*line;
+//	char		*result;
 
 	if ((fd < 0) || (BUFFER_SIZE == 0))
 		return (NULL);
@@ -65,6 +68,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = read_line(fd, buf, stash);
 	free(buf);
-	line = extract(stash);
+	if (*line == '\0')
+		return (NULL);
+	stash = extract(line);
 	return (line);
 }
