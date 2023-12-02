@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 {
 	if (argc == 2)
 		print_lines(argv[1]);
-	get_next_line(78);
-	get_next_line(0);
+//	get_next_line(78);
+//	get_next_line(0);
 	return (0);
 }

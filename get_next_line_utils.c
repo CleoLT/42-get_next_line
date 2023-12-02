@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:21:38 by ale-tron          #+#    #+#             */
-/*   Updated: 2023/12/02 12:06:57 by ale-tron         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:47:15 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -33,7 +33,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	string = (char *)malloc(sizeof(char) * len);
 	if (string == NULL)
-		return (NULL);
+		return (free(s1), NULL);
 	i = 0;
 	while (s1[i])
 	{
@@ -47,7 +47,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	string [i + j] = '\0';
-	return (string);
+	return (free(s1), string);
 }
 
 char	*ft_strchr(char *s, int c)
