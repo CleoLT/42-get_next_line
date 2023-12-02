@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 08:40:06 by ale-tron          #+#    #+#             */
-/*   Updated: 2023/11/30 16:51:29 by ale-tron         ###   ########.fr       */
+/*   Updated: 2023/12/02 12:06:29 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -21,7 +21,7 @@ char	*read_line(int fd, char *buf, char *stash)
 	{
 		read_bytes = read(fd, buf, BUFFER_SIZE);
 		if (read_bytes < 0)
-			return (NULL);
+			return (free(stash), NULL);
 		buf[read_bytes] = '\0';
 		if (!stash)
 			stash = ft_strdup("");
@@ -33,6 +33,8 @@ char	*read_line(int fd, char *buf, char *stash)
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
+	if (stash[0] == '\0')
+		return (free(stash), NULL);
 	return (stash);
 }
 
@@ -47,6 +49,8 @@ char	*extract(char *line)
 	result = ft_substr(line, i + 1, ft_strlen(line));
 	if (!result)
 		return (NULL);
+	if (result[0] == '\0')
+		return (free(result), NULL);
 	line[i + 1] = '\0';
 	return (result);
 }
@@ -64,7 +68,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = read_line(fd, buf, stash);
 	free(buf);
-	if (*line == '\0' || line == NULL)
+	if (!line)
 		return (NULL);
 	stash = extract(line);
 	return (line);
