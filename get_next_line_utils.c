@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:21:38 by ale-tron          #+#    #+#             */
-/*   Updated: 2023/12/02 14:47:15 by ale-tron         ###   ########.fr       */
+/*   Updated: 2023/12/03 17:40:31 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -35,13 +35,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (string == NULL)
 		return (free(s1), NULL);
 	i = 0;
-	while (s1[i])
+	while (s1 && s1[i])
 	{
 		string[i] = s1[i];
 		i++;
 	}
 	j = 0;
-	while (s2[j])
+	while (s2 && s2[j])
 	{
 		string[i + j] = s2[j];
 		j++;
@@ -57,6 +57,8 @@ char	*ft_strchr(char *s, int c)
 
 	ch = (char)c;
 	i = 0;
+	if (!s)
+		return (NULL);
 	while (s[i])
 	{
 		if (s[i] == ch)
